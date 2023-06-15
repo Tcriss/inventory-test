@@ -1,11 +1,12 @@
 .dashboard{
-    width: 100% !important;
+    width: 100%;
 
     .summary{
 
         app-cards{
-            display: flex;
+            display: grid;
             gap: 20px;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
         }
     }
 }

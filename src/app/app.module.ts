@@ -2,6 +2,7 @@ import { TuiRootModule, TuiDialogModule, TuiAlertModule, TuiSvgModule } from "@t
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { AppbarComponent } from './components/appbar/appbar.component';
 import { ItemComponent } from './components/item/item.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { TuiMarkerIconModule } from "@taiga-ui/kit";
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -21,17 +23,19 @@ import { TuiMarkerIconModule } from "@taiga-ui/kit";
     SidebarComponent,
     AppbarComponent,
     ItemComponent,
-    CardsComponent
+    CardsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
       BrowserAnimationsModule,
       TuiRootModule,
       TuiDialogModule,
       TuiAlertModule,
       TuiSvgModule,
-      TuiMarkerIconModule
+      TuiMarkerIconModule,
 ],
   providers: [],
   bootstrap: [AppComponent]

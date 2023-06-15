@@ -22,6 +22,11 @@ export class CardsComponent {
       icon: 'tuiIconPackageLarge',
       count: 25,
       view: 'Total Items'
+    },
+    {
+      icon: 'tuiIconPackageLarge',
+      count: 25,
+      view: 'Total Items'
     }
   ]
 }
