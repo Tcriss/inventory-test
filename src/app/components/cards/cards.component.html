@@ -1,0 +1,11 @@
+<div class="card" *ngFor="let card of cards">
+    <a>
+        <tui-marker-icon
+            mode="primary"
+            src="{{card.icon}}"
+            class="tui-space_right-2"
+        ></tui-marker-icon>  
+        <h3 class="count">{{card.count}}</h3>
+        <p class="view">{{card.view}}</p>
+    </a>
+</div>

@@ -1,0 +1,11 @@
+.dashboard{
+    width: 100% !important;
+
+    .summary{
+
+        app-cards{
+            display: flex;
+            gap: 20px;
+        }
+    }
+}
