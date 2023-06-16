@@ -3,6 +3,7 @@ import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { Product, Product2 } from 'src/app/services/connection/data';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ProductsComponent implements OnInit{
   products:Product[] = [];
-  updateForm:FormGroup;
+  updateForm: FormGroup;
 
   constructor(
     private data:ConnectionService,
@@ -23,11 +24,15 @@ export class ProductsComponent implements OnInit{
       name: [''],
       description: [''],
       category: [''],
-      price: []
+      price: ['']
     })
   }
 
   ngOnInit(): void {
+    this.show();
+  }
+
+  show(){
     this.data.showProducts().subscribe(result => this.products = result);
   }
 
@@ -41,12 +46,16 @@ export class ProductsComponent implements OnInit{
     }
     this.data.editProduct(id, update).subscribe(res =>{
       this.alert.showAlert('Product updated', res);
+      this.show();
+      this.open = false;
     })
+    this.updateForm.reset();
   }
 
   delete(id:number){
     this.data.deleteProduct(id).subscribe(res=>{
       this.alert.showAlert('Product deleted', res);
+      this.show();
     });
   }
 

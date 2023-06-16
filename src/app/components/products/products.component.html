@@ -32,7 +32,6 @@
                     tuiAutoFocus
                     formControlName="name"
                 >
-                    Product name
                 </tui-input>
                 <tui-input
                     tuiAutoFocus
@@ -54,7 +53,7 @@
                     <input
                         tuiTextfield
                         inputmode="numeric"
-                        value="{{product.price}}"
+                        [value]="product.price"
                     />
                 </tui-input>
             </div>

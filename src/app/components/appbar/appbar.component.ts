@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { Product } from 'src/app/services/connection/data';
+import { ProductsComponent } from '../products/products.component';
 
 @Component({
   selector: 'app-appbar',
@@ -16,7 +17,7 @@ export class AppbarComponent {
   constructor(
     private fb:FormBuilder,
     private back:ConnectionService,
-    private alert:AlertsService
+    private alert:AlertsService,
   ){
     this.productForm = this.fb.group({
       id: [],
@@ -45,6 +46,8 @@ export class AppbarComponent {
     }
     this.back.addProduct(data).subscribe(res =>{
       this.alert.showAlert('Product Added', 'Your product was added succesfully');
-    });    
+      this.open = false;
+    }); 
+    this.productForm.reset();   
   }
 }
