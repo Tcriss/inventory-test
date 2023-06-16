@@ -44,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
       TuiInputModule,
       TuiButtonModule,
       TuiDialogModule,
-      TuiAlertModule
+      TuiAlertModule,
+      TuiMarkerIconModule
 ],
   providers: [],
   bootstrap: [AppComponent]

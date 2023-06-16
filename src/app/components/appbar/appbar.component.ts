@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Inject, inject } from '@angular/core';
-import { FormGroup, Validator, FormBuilder } from '@angular/forms';
-import { TuiAlertService } from '@taiga-ui/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { Product } from 'src/app/services/connection/data';
 
@@ -8,7 +8,6 @@ import { Product } from 'src/app/services/connection/data';
   selector: 'app-appbar',
   templateUrl: './appbar.component.html',
   styleUrls: ['./appbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppbarComponent {
   value = '';
@@ -17,9 +16,10 @@ export class AppbarComponent {
   constructor(
     private fb:FormBuilder,
     private back:ConnectionService,
-    private alerts:TuiAlertService 
+    private alert:AlertsService
   ){
     this.productForm = this.fb.group({
+      id: [],
       name: [''],
       description: [''],
       category: [''],
@@ -28,7 +28,7 @@ export class AppbarComponent {
     });
   }
 
-  open = false;
+  open:boolean = false;
 
   showDialog(): void {
       this.open = true;
@@ -36,20 +36,15 @@ export class AppbarComponent {
 
   add(){
     let data:Product = {
+      id: this.productForm.value.id,
       name: this.productForm.value.name,
       description: this.productForm.value.description,
       category: this.productForm.value.category,
       stock: this.productForm.value.stock,
       price: this.productForm.value.price
     }
-    this.back.addProduct(data).subscribe(
-      {
-        next(res){
-          console.log(res);
-        },error(err){
-          console.log(err.message);
-        }
-      }
-    );
+    this.back.addProduct(data).subscribe(res =>{
+      this.alert.showAlert('Product Added', 'Your product was added succesfully');
+    });    
   }
 }

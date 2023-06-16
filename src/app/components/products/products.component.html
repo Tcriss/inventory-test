@@ -13,4 +13,52 @@
             [value]="product.price"
         ></tui-money>
     </div>
+    <div class="actions">
+        <button (click)="delete(product.id)">
+            <tui-marker-icon mode="error" src="tuiIconTrash"></tui-marker-icon>
+        </button>
+        <button (click)="showDialog()">
+            <tui-marker-icon src="tuiIconEdit2"></tui-marker-icon>
+        </button>
+    </div>
+    <ng-template
+        let-observer
+        [tuiDialogOptions]="{label: 'Updating product', size: 's'}"
+        [(tuiDialog)]="open"
+    >
+        <form class="form" (ngSubmit)="edit(product.id)" [formGroup]="updateForm">
+            <div class="inputs">
+                <tui-input
+                    tuiAutoFocus
+                    formControlName="name"
+                >
+                    Product name
+                </tui-input>
+                <tui-input
+                    tuiAutoFocus
+                    formControlName="description"
+                >
+                    Description
+                </tui-input>
+                <tui-input
+                    tuiAutoFocus
+                    formControlName="category"
+                >
+                    Category
+                </tui-input>
+                <tui-input
+                    tuiAutoFocus
+                    formControlName="price"
+                >
+                    Price
+                    <input
+                        tuiTextfield
+                        inputmode="numeric"
+                        value="{{product.price}}"
+                    />
+                </tui-input>
+            </div>
+            <button tuiButton type="submit">Save changes</button>
+        </form>
+    </ng-template>
 </div>

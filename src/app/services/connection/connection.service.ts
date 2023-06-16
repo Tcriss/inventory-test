@@ -33,7 +33,11 @@ export class ConnectionService {
     return this.http.put<Product>(this.url+'ProductStock?id=${id}&newStock=4',stock);
   }
 
-  editProduct(product:Product2):Observable<Product2>{
-    return this.http.put<Product2>(this.url+'Product',product);
+  editProduct(id:number, product:Product2):Observable<string>{
+    return this.http.put<string>(this.url+'Product?id='+id,product);
+  }
+
+  deleteProduct(id:number):Observable<string>{
+    return this.http.delete<string>(this.url+'ProductId?id='+id);
   }
 }
