@@ -1,1 +1,76 @@
-<p>appbar works!</p>
+<div class="appbar">
+    <div class="section">
+        <h1>Items</h1>
+    </div>
+    <div class="actions">
+        <tui-input
+            tuiTextfieldIcon="tuiIconSearchLarge"
+            tuiHintContent="Buscar..."
+            tuiHintDirection="bottom-left"
+            class="input"
+            (ngModel)="value"
+        >
+            Buscar
+            <input
+                tuiTextfield
+                placeholder="Buscar..."
+            />
+        </tui-input>
+        <button
+            tuiIconButton
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3"
+            icon="tuiIconPlusLarge"
+            (click)="showDialog()"
+        ></button>
+    </div>
+</div>
+<ng-template
+    let-observer
+    [tuiDialogOptions]="{label: 'Adding a Product', size: 's'}"
+    [(tuiDialog)]="open"
+>
+    <form class="form" (ngSubmit)="add()" [formGroup]="productForm">
+        <div class="inputs">
+            <tui-input
+                tuiAutoFocus
+                formControlName="name"
+            >
+                Product name
+            </tui-input>
+            <tui-input
+                tuiAutoFocus
+                formControlName="description"
+            >
+                Description
+            </tui-input>
+            <tui-input
+                tuiAutoFocus
+                formControlName="category"
+            >
+                Category
+            </tui-input>
+            <tui-input
+                tuiAutoFocus
+                formControlName="stock"
+            >
+                Stock
+                <input
+                    tuiTextfield
+                    inputmode="numeric"
+                />
+            </tui-input>
+            <tui-input
+                tuiAutoFocus
+                formControlName="price"
+            >
+                Price
+                <input
+                    tuiTextfield
+                    inputmode="numeric"
+                />
+            </tui-input>
+        </div>
+        <button tuiButton type="submit">Add</button>
+    </form>
+</ng-template>

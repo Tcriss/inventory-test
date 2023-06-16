@@ -13,8 +13,8 @@ export class ConnectionService {
     this.url = 'https://localhost:7051/';
   }
 
-  showProducts():Observable<Product>{
-    return this.http.get<Product>(this.url+'ProductAll');
+  showProducts():Observable<Product[]>{
+    return this.http.get<Product[]>(this.url+'ProductAll');
   }
 
   getProductById(id:number):Observable<Product>{

@@ -1,3 +1,9 @@
-.prodcut-list{
-    width: 100%;
+.items{
+
+    .product-list{
+
+        app-products{
+            gap: 50px;
+        }
+    }
 }

@@ -13,7 +13,6 @@ export class ProductsComponent implements OnInit{
   constructor(private data:ConnectionService){}
 
   ngOnInit(): void {
-    this.data.showProducts().subscribe(result => this.products.push(result));
-    console.log(this.products);
+    this.data.showProducts().subscribe(result => this.products = result);
   }
 }
