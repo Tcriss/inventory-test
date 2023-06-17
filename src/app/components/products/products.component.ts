@@ -3,7 +3,6 @@ import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { Product, Product2 } from 'src/app/services/connection/data';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 @Component({
   selector: 'app-products',

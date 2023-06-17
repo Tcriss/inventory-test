@@ -16,6 +16,8 @@ import { TuiInputModule, TuiMarkerIconModule } from "@taiga-ui/kit";
 import { ProductsComponent } from './components/products/products.component';
 import { TuiMoneyModule } from "@taiga-ui/addon-commerce";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TuiBlockStatusModule } from "@taiga-ui/layout";
+import { EmptyComponent } from './components/empty/empty.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AppbarComponent,
     ItemComponent,
     CardsComponent,
-    ProductsComponent
+    ProductsComponent,
+    EmptyComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
       TuiButtonModule,
       TuiDialogModule,
       TuiAlertModule,
-      TuiMarkerIconModule
+      TuiMarkerIconModule,
+      TuiBlockStatusModule,
 ],
   providers: [],
   bootstrap: [AppComponent]
