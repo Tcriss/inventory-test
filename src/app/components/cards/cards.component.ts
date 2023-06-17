@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Card } from './card';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { Product } from 'src/app/services/connection/data';
+import { AlertsService } from 'src/app/services/alerts/alerts.service';
 
 @Component({
   selector: 'app-cards',
@@ -14,18 +15,13 @@ export class CardsComponent implements OnInit {
   cards:Card[] = [
     {
       icon: 'tuiIconPackageLarge',
-      count: 25,
+      count: 0,
       view: 'Total Items'
     },
     {
       icon: 'tuiIconListLarge',
-      count: 25,
+      count: 0,
       view: 'Products Categories'
-    },
-    {
-      icon: 'tuiIconPackageLarge',
-      count: this.inventoryValue,
-      view: 'Inventory Value'
     },
     {
       icon: 'tuiIconPackageLarge',
@@ -33,22 +29,34 @@ export class CardsComponent implements OnInit {
       view: 'Example'
     }
   ]
+  card = {
+    icon: 'tuiIconPackageLarge',
+    count: 0,
+    view: 'Inventory Value'
+  }
 
-  constructor(private data:ConnectionService){}
+  constructor(
+    private data:ConnectionService,
+    private alerts:AlertsService
+  ){}
 
   ngOnInit(): void {
     this.productsDetails();
   }
 
   productsDetails(){
-    this.data.showProducts().subscribe(res => {
-      this.products = res;
-      console.log(res);
+    this.data.showProducts().subscribe({
+      next: (res)=>{
+        this.products = res;
+      },
+      error:(err)=> this.alerts.showAlert('Error',err),
+      complete: ()=> {
+        this.products.forEach(product => {
+          this.inventoryValue += product.price; 
+        });
+        this.cards[0].count = this.products.length;
+        this.card.count = this.inventoryValue;
+      }
     });
-    this.products.forEach(product =>{
-      this.inventoryValue = product.price; 
-      console.log(product);
-    });
-    console.log(this.products);
   }
 }

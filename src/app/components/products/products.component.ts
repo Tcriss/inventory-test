@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit{
+  open:boolean = false;
   products:Product[] = [];
   updateForm: FormGroup;
 
@@ -43,22 +44,25 @@ export class ProductsComponent implements OnInit{
       category: this.updateForm.value.category,
       price: this.updateForm.value.price
     }
-    this.data.editProduct(id, update).subscribe(res =>{
-      this.alert.showAlert('Product updated', res);
-      this.show();
-      this.open = false;
+    this.data.editProduct(id, update).subscribe({
+      next: (res) => {
+        this.alert.showAlert('Product edited', 'Your product was edited succesfully');
+        this.open = false;
+      },
+      error: (err)=> this.alert.showAlert('Product was not edited', err)
     })
     this.updateForm.reset();
   }
 
   delete(id:number){
-    this.data.deleteProduct(id).subscribe(res=>{
-      this.alert.showAlert('Product deleted', res);
-      this.show();
+    this.data.deleteProduct(id).subscribe({
+      next: (res) => {
+        this.alert.showAlert('Product deleted', 'Your product was deleted succesfully');
+        this.open = false;
+      },
+      error: (err)=> this.alert.showAlert('Product was not deleted', err)
     });
   }
-
-  open:boolean = false;
 
   showDialog(): void {
     this.open = true;

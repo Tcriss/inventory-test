@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
-import { Product, addProduct } from 'src/app/services/connection/data';
-import { ProductsComponent } from '../products/products.component';
+import { addProduct } from 'src/app/services/connection/data';
 
 @Component({
   selector: 'app-appbar',
@@ -11,7 +10,8 @@ import { ProductsComponent } from '../products/products.component';
   styleUrls: ['./appbar.component.scss'],
 })
 export class AppbarComponent {
-  value = '';
+  value=''
+  open:boolean = false;
   productForm: FormGroup;
 
   constructor(
@@ -20,15 +20,13 @@ export class AppbarComponent {
     private alert:AlertsService,
   ){
     this.productForm = this.fb.group({
-      name: [''],
-      description: [''],
-      category: [''],
-      stock: [],
-      price: []
+      name: ['',[Validators.required,Validators.maxLength(50)]],
+      description: ['',[Validators.required,Validators.maxLength(100)]],
+      category: ['',Validators.required],
+      stock: [ ,Validators.required],
+      price: [ ,[Validators.required,Validators.pattern("^[0-9]*$")]]
     });
   }
-
-  open:boolean = false;
 
   showDialog(): void {
       this.open = true;
@@ -43,17 +41,12 @@ export class AppbarComponent {
       price: this.productForm.value.price
     }
     this.back.addProduct(data).subscribe({
-      next(res){
-        alert(res);
+      next: (res) => {
+        this.alert.showAlert('Product Added', 'Your product was added succesfully');
+        this.open = false;
       },
-      error(err){
-        console.log(`error aqui: ${err}`);
-      }
+      error: (err)=> this.alert.showAlert('Product Not Added', 'Check the campus to see the error')
     });
-    // this.back.addProduct(data).subscribe(res =>{
-    //   this.alert.showAlert('Product Added', 'Your product was added succesfully');
-    //   this.open = false;
-    // }); 
     this.productForm.reset();   
   }
 }

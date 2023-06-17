@@ -1,5 +1,5 @@
-<div class="card" *ngFor="let card of cards">
-    <a>
+<div class="cards">
+    <a class="card" *ngFor="let card of cards">
         <tui-marker-icon
             mode="primary"
             src="{{card.icon}}"
@@ -8,5 +8,22 @@
         ></tui-marker-icon>  
         <h3 class="count">{{card.count}}</h3>
         <p class="view">{{card.view}}</p>
+    </a>
+    <a class="card">
+        <tui-marker-icon
+            mode="primary"
+            src="tuiIconDollarSignLarge"
+            class="tui-space_right-2"
+            mode="success"
+        ></tui-marker-icon>  
+        <h3 class="count">
+            <tui-money 
+                currency="RD$" 
+                [precision]="2" 
+                decimal="always" 
+                [value]="card.count"
+            ></tui-money>
+        </h3>
+        <p class="view">Inventory Value</p>
     </a>
 </div>
