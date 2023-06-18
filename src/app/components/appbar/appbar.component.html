@@ -2,19 +2,18 @@
     <div class="section">
         <h1>Items</h1>
     </div>
-    <div class="actions">
+    <form class="actions" [formGroup]="form">
         <tui-input
             tuiTextfieldIcon="tuiIconSearchLarge"
             tuiHintContent="Buscar..."
             tuiHintDirection="bottom-left"
-            class="input"
-            (ngModel)="value"
+            formControlName="user"
         >
             Buscar
-            <input
-                tuiTextfield
-                placeholder="Buscar..."
-            />
+            <tui-data-list-wrapper
+                *tuiDataList
+                [items]="products | tuiFilterByInput"
+            ></tui-data-list-wrapper>
         </tui-input>
         <button
             tuiIconButton
@@ -24,7 +23,7 @@
             (click)="showDialog()"
             appearance="button"
         ></button>
-    </div>
+    </form>
 </div>
 <ng-template
     let-observer

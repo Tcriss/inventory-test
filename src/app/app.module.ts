@@ -12,7 +12,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppbarComponent } from './components/appbar/appbar.component';
 import { ItemComponent } from './components/item/item.component';
 import { CardsComponent } from './components/cards/cards.component';
-import { TuiInputModule, TuiMarkerIconModule } from "@taiga-ui/kit";
+import { TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule, TuiMarkerIconModule } from "@taiga-ui/kit";
 import { ProductsComponent } from './components/products/products.component';
 import { TuiMoneyModule } from "@taiga-ui/addon-commerce";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -50,6 +50,8 @@ import { EmptyComponent } from './components/empty/empty.component';
       TuiAlertModule,
       TuiMarkerIconModule,
       TuiBlockStatusModule,
+      TuiDataListWrapperModule,
+      TuiFilterByInputPipeModule
 ],
   providers: [],
   bootstrap: [AppComponent]

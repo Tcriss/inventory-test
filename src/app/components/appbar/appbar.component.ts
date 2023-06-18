@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
-import { addProduct } from 'src/app/services/connection/data';
+import { Product, addProduct } from 'src/app/services/connection/data';
 
 @Component({
   selector: 'app-appbar',
@@ -10,9 +10,14 @@ import { addProduct } from 'src/app/services/connection/data';
   styleUrls: ['./appbar.component.scss'],
 })
 export class AppbarComponent {
-  value=''
+  value='';
   open:boolean = false;
   productForm: FormGroup;
+  products:Product[] = [];
+
+  form = new FormGroup({
+    search: new FormControl(),
+  });
 
   constructor(
     private fb:FormBuilder,
@@ -48,5 +53,11 @@ export class AppbarComponent {
       error: (err)=> this.alert.showAlert('Product Not Added', 'Check the campus to see the error')
     });
     this.productForm.reset();   
+  }
+
+  show(){
+    this.back.showProducts().subscribe(res =>{
+      this.products = res;
+    });
   }
 }
