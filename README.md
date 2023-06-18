@@ -1,6 +1,6 @@
 # InventoryTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+This is test project with angular, can show, add, edit and delete your produtcs.
 
 ## Development server
 
