@@ -1,0 +1,12 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.scss';
+
+[tuiWrapper][data-appearance='button'] {
+    background: rgb(49, 101, 19);
+    color: #fff;
+    transition: all 400ms;
+
+    &:hover{
+        background: rgb(94, 201, 157);
+        transform: scale(1.05);
+    }
+}

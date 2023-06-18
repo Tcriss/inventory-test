@@ -1,4 +1,5 @@
 export interface Product{
+    id: number,
     name: string,
     description: string,
     category: string,
@@ -7,8 +8,17 @@ export interface Product{
 }
 
 export interface Product2{
+    id: number
     name: string,
     description: string,
     category: string,
+    price: number
+}
+
+export interface addProduct{
+    name: string,
+    description: string,
+    category: string,
+    stock: number,
     price: number
 }

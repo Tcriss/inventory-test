@@ -1,6 +1,21 @@
 <div class="sidebar">
-    <div class="logo"></div>
-    <a class="link" *ngFor="let route of routes" [routerLink]="[route.path]" [routerLinkActive]="['active']" >
-        <tui-svg src="{{route.icon}}"></tui-svg>
-    </a>
+    <div>
+        <img src="" alt="">
+    </div>
+    <div class="nav">
+        <a class="link" 
+            *ngFor="let route of routes" 
+            [routerLink]="[route.path]" 
+            [routerLinkActive]="['active']" 
+        >
+            <tui-svg src="{{route.icon}}"></tui-svg>
+        </a>
+    </div>
+    <div class="more">
+        <a class="link" 
+            href="https://github.com/Tcriss"
+        >
+            <tui-svg src="tuiIconGithubLarge"></tui-svg>
+        </a>
+    </div>
 </div>

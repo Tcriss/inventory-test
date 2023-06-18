@@ -1,0 +1,25 @@
+.appbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+
+    .actions{
+        width: 300px;
+        display: grid;
+        grid-template-columns: 80% 20%;
+        gap: 10px;
+    }
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    .inputs{
+        width: 100%;
+        display: grid;
+        gap: 10px;
+    }
+}
