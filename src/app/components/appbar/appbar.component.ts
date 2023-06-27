@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AddProduct } from 'src/app/models/addProduct.model';
+import { Product } from 'src/app/models/product.model';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
-import { Product, addProduct } from 'src/app/services/connection/data';
 
 @Component({
   selector: 'app-appbar',
@@ -10,19 +11,19 @@ import { Product, addProduct } from 'src/app/services/connection/data';
   styleUrls: ['./appbar.component.scss'],
 })
 export class AppbarComponent {
-  value='';
-  open:boolean = false;
+  value = '';
+  open: boolean = false;
   productForm: FormGroup;
-  products:Product[] = [];
+  products: Product[] = [];
 
   form = new FormGroup({
     search: new FormControl(),
   });
 
   constructor(
-    private fb:FormBuilder,
-    private back:ConnectionService,
-    private alert:AlertsService,
+    private fb: FormBuilder,
+    private back: ConnectionService,
+    private alert: AlertsService,
   ){
     this.productForm = this.fb.group({
       name: ['',[Validators.required,Validators.maxLength(50)]],
@@ -38,7 +39,7 @@ export class AppbarComponent {
   }
 
   add(){
-    let data:addProduct = {
+    let data: AddProduct = {
       name: this.productForm.value.name,
       description: this.productForm.value.description,
       category: this.productForm.value.category,

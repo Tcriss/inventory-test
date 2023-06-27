@@ -10,7 +10,7 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ItemsComponent } from './views/items/items.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppbarComponent } from './components/appbar/appbar.component';
-import { ItemComponent } from './components/item/item.component';
+import { ItemComponent } from './components/recentItems/item.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule, TuiMarkerIconModule } from "@taiga-ui/kit";
 import { ProductsComponent } from './components/products/products.component';

@@ -29,12 +29,17 @@
         [tuiDialogOptions]="{label: 'Updating product', size: 's'}"
         [(tuiDialog)]="open"
     >
-        <form class="form" (ngSubmit)="edit(product.id)" [formGroup]="updateForm">
+        <form class="form" (ngSubmit)="edit(product.id, product)" [formGroup]="updateForm">
             <div class="inputs">
                 <tui-input
                     tuiAutoFocus
                     formControlName="name"
                 >
+                    Name
+                    <input
+                        tuiTextfield
+                        type="email"
+                    />
                 </tui-input>
                 <tui-input
                     tuiAutoFocus

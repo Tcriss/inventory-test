@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from './card';
+import { Card } from '../../models/cards.model';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
-import { Product } from 'src/app/services/connection/data';
+import { Product } from 'src/app/models/product.model';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AlertsService } from 'src/app/services/alerts/alerts.service';
 export class CardsComponent implements OnInit {
   products:Product[] = [];
   inventoryValue:number = 0;
-  cards:Card[] = [
+  cards: Card[] = [
     {
       icon: 'tuiIconPackageLarge',
       count: 0,
@@ -36,8 +36,8 @@ export class CardsComponent implements OnInit {
   }
 
   constructor(
-    private data:ConnectionService,
-    private alerts:AlertsService
+    private data: ConnectionService,
+    private alerts: AlertsService
   ){}
 
   ngOnInit(): void {
