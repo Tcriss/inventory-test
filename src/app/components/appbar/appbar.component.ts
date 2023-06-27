@@ -35,7 +35,7 @@ export class AppbarComponent {
   }
 
   showDialog(): void {
-      this.open = true;
+    this.open = true;
   }
 
   add(){
