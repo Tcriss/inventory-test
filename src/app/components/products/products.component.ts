@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
-import { Product, Product2 } from 'src/app/services/connection/data';
+import { Product } from 'src/app/models/product.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { EditProduct } from 'src/app/models/editProduct.model';
 
 @Component({
   selector: 'app-products',
@@ -10,14 +11,14 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit{
-  open:boolean = false;
-  products:Product[] = [];
+  open: boolean = false;
+  products: Product[] = [];
   updateForm: FormGroup;
 
   constructor(
-    private data:ConnectionService,
-    private alert:AlertsService,
-    private fb:FormBuilder
+    private data: ConnectionService,
+    private alert: AlertsService,
+    private fb: FormBuilder
   ){
     this.updateForm = this.fb.group({
       id: [],
@@ -36,8 +37,8 @@ export class ProductsComponent implements OnInit{
     this.data.showProducts().subscribe(result => this.products = result);
   }
 
-  edit(id:number){
-    let update:Product2 = {
+  edit(id: number, product: EditProduct){
+    let update: EditProduct = {
       id: this.updateForm.value.id,
       name: this.updateForm.value.name,
       description: this.updateForm.value.description,
@@ -54,7 +55,7 @@ export class ProductsComponent implements OnInit{
     this.updateForm.reset();
   }
 
-  delete(id:number){
+  delete(id: number){
     this.data.deleteProduct(id).subscribe({
       next: (res) => {
         this.alert.showAlert('Product deleted', 'Your product was deleted succesfully');

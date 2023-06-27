@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavItem } from './route';
+import { NavItem } from '../../models/navItems.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +7,7 @@ import { NavItem } from './route';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  routes:NavItem[] = [
+  routes: NavItem[] = [
     { 
       icon: 'tuiIconHomeLarge',
       path: '/dashboard'
