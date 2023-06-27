@@ -3,7 +3,9 @@
     .product-list{
 
         app-products{
-            gap: 50px;
+            gap: 10px;
+            display: flex;
+            flex-direction: column-reverse;
         }
     }
 }

@@ -2,6 +2,6 @@
     <app-appbar></app-appbar>
     <div class="product-list">
         <app-products></app-products>
-        <!-- <app-empty></app-empty> -->
+        <app-empty *ngIf="products.length == 0"></app-empty>
     </div>
 </div>

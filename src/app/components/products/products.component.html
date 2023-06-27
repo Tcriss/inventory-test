@@ -29,7 +29,7 @@
         [tuiDialogOptions]="{label: 'Updating product', size: 's'}"
         [(tuiDialog)]="open"
     >
-        <form class="form" (ngSubmit)="edit(product.id)" [formGroup]="updateForm">
+        <form class="update-form" (ngSubmit)="edit(product.id)" [formGroup]="updateForm">
             <div class="inputs">
                 <tui-input
                     tuiAutoFocus
@@ -65,7 +65,7 @@
                     />
                 </tui-input>
             </div>
-            <button tuiButton type="submit">Save changes</button>
+            <button appearance="button" tuiButton  type="submit">Save changes</button>
         </form>
     </ng-template>
 </div>

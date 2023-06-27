@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit{
 
   showDialog(id: number) {
     this.open = true;
-    let ID = id;
+    let ID: number = id;
 
     this.data.getProductById(ID).subscribe(r => {
       this.editProduct = {
@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit{
   }
 
   edit(id: number){
+    let ID: number = id;
 
     let updatedForm: EditProduct = {
       name: this.updateForm.value.name,
@@ -61,16 +62,13 @@ export class ProductsComponent implements OnInit{
       price: this.updateForm.value.price
     };
 
-    this.data.editProduct(id, updatedForm).subscribe({
+    this.data.editProduct(ID, updatedForm).subscribe({
       next: (res) => {
         this.alert.showAlert('Product edited', 'Your product was edited succesfully');
         this.open = false;
-      },
-      error: (err)=> this.alert.showAlert('Product was not edited', err),
-      complete: () => {
-        this.updateForm.reset();
         this.show();
-      }
+      },
+      error: (err)=> this.alert.showAlert('Product was not edited', err)
     });
   }
 
