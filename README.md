@@ -2,6 +2,8 @@
 
 This is test project with angular, can show, add, edit and delete your produtcs.
 
+I made this possible thanks to the API provided by Nelmix Solutions `https://github.com/Nelmix-Solutions/Api-PruebaFront`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
