@@ -19,7 +19,7 @@
         <button (click)="delete(product.id)">
             <tui-marker-icon size="s" mode="error" src="tuiIconTrash"></tui-marker-icon>
         </button>
-        <button (click)="showDialog()">
+        <button (click)="showDialog(product.id)">
             <tui-marker-icon size="s" src="tuiIconEdit2"></tui-marker-icon>
         </button>
     </div>
@@ -29,7 +29,7 @@
         [tuiDialogOptions]="{label: 'Updating product', size: 's'}"
         [(tuiDialog)]="open"
     >
-        <form class="form" (ngSubmit)="edit(product.id, product)" [formGroup]="updateForm">
+        <form class="form" (ngSubmit)="edit(product.id)" [formGroup]="updateForm">
             <div class="inputs">
                 <tui-input
                     tuiAutoFocus

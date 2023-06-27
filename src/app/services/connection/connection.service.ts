@@ -20,11 +20,11 @@ export class ConnectionService {
   }
 
   getProductById( id: number ): Observable<Product> {
-    return this.http.get<Product>(this.url+id);
+    return this.http.get<Product>(this.url+'ProductId?id='+id);
   }
 
   getProductByName( name: string ): Observable<Product> {
-    return this.http.get<Product>(this.url+name);
+    return this.http.get<Product>(this.url+'ProductName?name='+name);
   }
 
   addProduct( product: AddProduct ): Observable<Product> {

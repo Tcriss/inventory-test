@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit{
   open: boolean = false;
   products: Product[] = [];
   updateForm: FormGroup;
+  editProduct = {};
 
   constructor(
     private data: ConnectionService,
@@ -21,7 +22,6 @@ export class ProductsComponent implements OnInit{
     private fb: FormBuilder
   ){
     this.updateForm = this.fb.group({
-      id: [],
       name: [''],
       description: [''],
       category: [''],
@@ -37,22 +37,41 @@ export class ProductsComponent implements OnInit{
     this.data.showProducts().subscribe(result => this.products = result);
   }
 
-  edit(id: number, product: EditProduct){
-    let update: EditProduct = {
-      id: this.updateForm.value.id,
+  showDialog(id: number) {
+    this.open = true;
+    let ID = id;
+
+    this.data.getProductById(ID).subscribe(r => {
+      this.editProduct = {
+        name: r.name,
+        description: r.description,
+        category: r.category,
+        price: r.price
+      };
+      this.updateForm.setValue(this.editProduct);
+    });
+  }
+
+  edit(id: number){
+
+    let updatedForm: EditProduct = {
       name: this.updateForm.value.name,
       description: this.updateForm.value.description,
       category: this.updateForm.value.category,
       price: this.updateForm.value.price
-    }
-    this.data.editProduct(id, update).subscribe({
+    };
+
+    this.data.editProduct(id, updatedForm).subscribe({
       next: (res) => {
         this.alert.showAlert('Product edited', 'Your product was edited succesfully');
         this.open = false;
       },
-      error: (err)=> this.alert.showAlert('Product was not edited', err)
-    })
-    this.updateForm.reset();
+      error: (err)=> this.alert.showAlert('Product was not edited', err),
+      complete: () => {
+        this.updateForm.reset();
+        this.show();
+      }
+    });
   }
 
   delete(id: number){
@@ -61,11 +80,8 @@ export class ProductsComponent implements OnInit{
         this.alert.showAlert('Product deleted', 'Your product was deleted succesfully');
         this.open = false;
       },
-      error: (err)=> this.alert.showAlert('Product was not deleted', err)
+      error: (err)=> this.alert.showAlert('Product was not deleted', err),
+      complete: () => this.show()
     });
-  }
-
-  showDialog(): void {
-    this.open = true;
   }
 }
